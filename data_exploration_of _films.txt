@@ -1,0 +1,160 @@
+Project Title: Data exploration of films data Using PostgreSQL
+
+Project Description:
+In this project, I will apply my SQL skills to conduct exploratory data analysis on the "inidata" database,which includes information about films, actors, reviews, and roles. The project will retrieve, filter, and analyse data to solve real-world business questions in the film industry.
+
+Project Objectives:
+Use SQL queries to retrieve and analyse information from the "inidata" database.
+Gain real experience with SQL data analysis.
+Answer real-world business questions with SQL.
+Present findings in a clear, organised manner.
+
+
+-- the top 10 highest-grossing films in the database, and when were they released
+
+SELECT title,gross-budget as profit, release_year
+FROM films
+WHERE gross-budget is not null
+ORDER BY gross-budget DESC
+LIMIT 10
+
+--How many films in the database were released in each country, and what are the top five countries?
+
+SELECT Country, COUNT(title) as count_of_films
+FROM films
+where country is not null
+GROUP BY country
+ORDER BY count(title) DESC
+LIMIT 5
+
+--how many films are available in each language,and what are the top three language represented
+
+select distinct(language), count(title)
+from films
+where language is not null
+group by distinct(language)
+order by count(title) desc
+limit 3
+
+--what is the aberage imdb score for files in the database
+select avg(imdb_score) as average_imdb_score
+
+
+--Which country has made the highest profit from movies?
+SELECT country, sum(gross - budget) AS profit, 
+FROM films
+WHERE "gross" is not null and "budget" IS NOT NULL
+ORDER BY sum(gross - budget) desc
+limit 10 
+
+--Which movie made the highest profit in the 21st century
+
+SELECT title,(gross - budget) AS profit, release_year
+FROM films
+WHERE (gross - budget) IS NOT NULL
+	AND release_year >=2001
+ORDER BY profit DESC
+limit 10
+
+--How many people in the database are still alive (based on birthdate and death date)
+
+SELECT (COUNT(birthdate) - COUNT(deathdate)) as living_cast
+FROM people
+
+
+--Which year has the highest number of movie releases
+
+SELECT release_year,COUNT(title) as number_of_movies_released
+FROM films
+where release_year is not null
+GROUP BY release_year
+ORDER BY count(title) DESC
+
+
+--Determine the top 10 people with the most roles in the database.
+
+SELECT COUNT(role) as number_of_roles, person_id
+FROM people AS p
+inner join roles AS r
+ON p.id = r.person_id
+GROUP BY person_id
+ORDER BY COUNT(role) DESC
+LIMIT 10
+
+--Who are the top 10 actors or directors with the most roles in the database
+
+SELECT COUNT(role) as number_or_role, name
+FROM people AS p
+LEFT JOIN roles AS r
+ON p.id = r.person_id
+GROUP BY name
+ORDER BY COUNT(role) DESC
+LIMIT 10
+
+--Identify how many people in the database are still alive.
+
+select COUNT(birthdate) - COUNT(deathdate) as living_cast
+from people
+where birthdate is not null
+
+--calculate the average number of user and critic reviews for films
+select avg(num_user)as average_number_of_user, 
+avg(num_critic) as average_number_of_critic
+from reviews
+
+--Identify films with the highest number of user and critic reviews
+
+SELECT title,film_id, num_user,num_critic
+FROM reviews
+inner JOIN films
+ON reviews.film_id=films.id
+WHERE num_user IS NOT NULL
+ORDER BY num_user DESC
+
+
+SELECT title,film_id, num_user,num_critic
+FROM reviews
+LEFT JOIN films
+ON reviews.film_id=films.id
+WHERE num_critic IS NOT NULL
+ORDER BY num_critic DESC
+
+--Which films have the most Facebook likes, and is there a correlation with their IMDb scores
+
+SELECT title,facebook_likes,imdb_score
+FROM films
+inner join reviews
+on films.id=reviews.id
+ORDER BY facebook_likes desc
+
+SELECT title,facebook_likes,imdb_score
+FROM films
+inner join reviews
+on films.id=reviews.id
+ORDER BY imdb_score desc
+
+--list top 7 certification of movies by profit made
+
+select certification, sum(gross-budget) as profit
+from films
+where "certification" is not null and "gross" is not null
+group by certification
+order by sum(gross-budgt) desc
+limit 7
+
+--list top 7 release_year of movies by profit 
+
+select release_year, gross
+from films
+where "release_year" is not null and "gross" is not null
+order by gross desc
+limit 10
+
+
+
+--Calculate the average number of user and critic reviews for films.
+
+SELECT film_id, AVG(num_user) AS average_num_user,AVG(num_critic) AS average_num_critic
+FROM reviews
+GROUP BY film_id
+
