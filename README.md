@@ -10,7 +10,7 @@ The initiative will acquire, filter, and analyse data to address real-world busi
 •	This is not an actual organisation, as we know inidata base is compiled by DAHEL TECH for educational purposes.
 
 ## NOTE:
-•	Data exploration of films using prosgreSQL.txt file contain my query codes for this project
+•	Data exploration of films using prosgreSQL.txt file contain my query codes for this project [here](https://github.com/AyomideAkinrotimi/Data_exploration_of_public_films/blob/main/data_exploration_of%20_films.txt)
 
 
 •	Data_exploration_of_films_presentation is a PDF file that contain the original screenshot of my queries, result and analysis
