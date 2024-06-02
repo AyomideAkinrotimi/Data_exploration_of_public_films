@@ -13,7 +13,7 @@ The initiative will acquire, filter, and analyse data to address real-world busi
 •	Data exploration of films using prosgreSQL.txt file contain my query codes for this project [here](https://github.com/AyomideAkinrotimi/Data_exploration_of_public_films/blob/main/data_exploration_of%20_films.txt)
 
 
-•	Data_exploration_of_films_presentation is a PDF file that contain the original screenshot of my queries, result and analysis
+•	Data_exploration_of_films_presentation is a PDF file that contain the original screenshot of my queries, result and analysis[here](https://github.com/AyomideAkinrotimi/Data_exploration_of_public_films/blob/main/Data_exploration_of_films_presentation.pdf)
 
 •	Public film dashboard can be viewed on my tableau public page [here](https://public.tableau.com/app/profile/ayomide.akinrotimi/viz/PUBLICFILMSDASHBOARD/PUBLICFILMSDASHBOARD)
 
